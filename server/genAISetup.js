@@ -12,7 +12,7 @@ const model = genAI.getGenerativeModel({
 
 async function getResponse(prompt= "who is narendra modi and what is his full name?") {
     const result = await model.generateContent(prompt);
-    return result.response.text();
+    return result.response;
 }
 
 export {getResponse};
