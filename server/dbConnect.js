@@ -7,10 +7,10 @@ const mongoURI = 'mongodb+srv://iamdebesh391:OOf1p5tWseP9fA2M@questions.ehv7h.mo
 const Question = mongoose.model("Question", {
     name : String
 })
-
+mongoose.connect(mongoURI);
 
 function saveQuestion(user_question) {
-    mongoose.connect(mongoURI);
+    
     const question = new Question({name : user_question});
     question.save().then(()=> console.log('saved!'));
 }
