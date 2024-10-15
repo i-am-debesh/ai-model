@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
-
-
-const mongoURI = 'mongodb+srv://iamdebesh391:OOf1p5tWseP9fA2M@questions.ehv7h.mongodb.net/?retryWrites=true&w=majority&appName=questions';
+import dotenv from 'dotenv'
+dotenv.config();
+const dbPass = process.env.DB_PASS;
+const mongoURI = `mongodb+srv://iamdebesh391:${dbPass}@questions.ehv7h.mongodb.net/?retryWrites=true&w=majority&appName=questions`;
 
 
 const Question = mongoose.model("Question", {
