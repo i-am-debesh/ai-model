@@ -12,10 +12,9 @@ const Question = mongoose.model("Question", {
 })
 mongoose.connect(mongoURI);
 function getCurrentTimeStamp() {
-    const date = new Date();
-    const timeStamp = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} || ${date.getHours()}:${date.getMinutes()}`;
-
-    return timeStamp;
+    const date = new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+    //const timeStamp = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} || ${date.getHours()}:${date.getMinutes()}`;
+    return date;
 }
 function saveQuestion(user_question) {
     const timeStamp = getCurrentTimeStamp();
