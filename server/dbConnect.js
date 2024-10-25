@@ -6,13 +6,26 @@ const mongoURI = `mongodb+srv://iamdebesh391:${dbPass}@questions.ehv7h.mongodb.n
 
 
 const Question = mongoose.model("Question", {
-    name : String
+    content : String,
+    timestamp: String
+
 })
 mongoose.connect(mongoURI);
+function getCurrentTimeStamp() {
+    const date = new Date();
+    const timeStamp = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} || ${date.getHours()}:${date.getMinutes()}`;
 
+    return timeStamp;
+}
 function saveQuestion(user_question) {
-    
-    const question = new Question({name : user_question});
+    const timeStamp = getCurrentTimeStamp();
+    const question = new Question(
+        {
+            content : user_question,
+            timestamp: timeStamp
+
+        }
+    );
     question.save().then(()=> console.log('saved!'));
 }
 
