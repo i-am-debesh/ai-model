@@ -13,10 +13,13 @@ app.use(express.json());
 
 app.get(/=/, async(req, res)=>{
     
-    const decodedQuestion = decodeQuestion(req.url);
-    saveQuestion(decodedQuestion);
+    const decodedQuestion = decodeQuestion(req.url);    
     //console.log(decodedQuestion)
     const response = await handleQuestions(decodedQuestion);
+    
+    const aiResponse = response.candidates[0].content.parts[0].text;
+    
+    saveQuestion(decodedQuestion,aiResponse);
     res.send(response);
     
 });
