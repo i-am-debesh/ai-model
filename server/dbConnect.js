@@ -28,4 +28,19 @@ function saveQuestion(user_question) {
     question.save().then(()=> console.log('saved!'));
 }
 
-export {saveQuestion}
+async function getAllData() {
+    try {
+        // await mongoose.connect(mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
+        // console.log('DB connected!');
+        const results = await Question.find({});
+        const storeResults = results;
+        //console.log("Data from DB::: ", storeResults);
+
+        return storeResults;
+
+    }catch (error) {
+        console.error("Error fetching data: ", error);
+    }
+}
+
+export {saveQuestion, getAllData}
