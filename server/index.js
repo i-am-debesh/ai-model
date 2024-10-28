@@ -4,7 +4,7 @@ dotenv.config()
 import cors from 'cors';
 import { decodeQuestion } from './extras.js';
 import { handleQuestions } from './extras.js';
-import { getAllData, saveQuestion } from './dbConnect.js';
+import { deleteByID, getAllData, saveQuestion } from './dbConnect.js';
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -29,7 +29,14 @@ app.get('/results', async (req,res) => {
     const dataFromDB = await getAllData();
     //console.log(dataFromDB);
     res.send(dataFromDB);
-}) 
+})
+
+app.get('/dltID?', async(req,res)=> {
+    const dataID = (req.url).slice(7,req.url.length);
+    const status = await deleteByID(dataID);
+    status === 1?res.json('ok'):res.json('not found');
+    
+})
     
     
 

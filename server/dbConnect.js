@@ -45,4 +45,19 @@ async function getAllData() {
     }
 }
 
-export {saveQuestion, getAllData}
+const deleteByID = async (id) => {
+    
+    try {
+        const obj = await Question.findById(id);
+        await Question.deleteOne(obj);
+        return 1;
+        
+    }catch(error) {
+        return 0;
+    }
+    
+
+};
+  
+
+export {saveQuestion, getAllData, deleteByID}
